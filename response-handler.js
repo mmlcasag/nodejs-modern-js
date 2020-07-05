@@ -1,8 +1,13 @@
 // this is the old syntax
 // const fs = require('fs');
+// you can use core api with promises now
+// in the case of the fs package in the old syntax, you have to call it like this
+// const fs = require('fs').promises;
 
 // this is the new syntax
-import fs from 'fs';
+// you can use core api with promises now
+// in the case of the fs package in the new syntax, you have to call it like this
+import fs from 'fs/promises';
 import path, { dirname } from 'path'; // you can import multiple functions inline by using ","
 import { fileURLToPath } from 'url';
 
@@ -13,10 +18,18 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 export const resHandler = (req, res, next) => {
-  // fs.readFile('my-page.html', 'utf8', (err, data) => {
-  //   res.send(data);
-  // });
-  res.sendFile(path.join(__dirname, 'my-page.html'));
+    // now, instead of using the old approach
+    // using callbacks
+    // you can switch to this approach
+    // using promises
+    fs.readFile('my-page.html', 'utf8')
+        .then((data) => {
+          res.send(data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    // res.sendFile(path.join(__dirname, 'my-page.html'));
 };
 
 // this is the old syntax
