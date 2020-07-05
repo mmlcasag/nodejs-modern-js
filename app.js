@@ -1,13 +1,17 @@
-const fs = require('fs');
+// this is the old syntax
+// const express = require('express');
+// const resHandler = require('./response-handler');
 
-const express = require('express');
+// this is the new syntax
+import express from 'express';
+import { resHandler } from './response-handler.js';
+
+// to switch to the new syntax you have to add 
+// "type": "module" on your package.json file
+// as you can see at line number 6
 
 const app = express();
 
-app.get('/', (req, res, next) => {
-  fs.readFile('my-page.html', 'utf8', (err, data) => {
-    res.send(data);
-  });
-});
+app.get('/', resHandler);
 
 app.listen(3000);
