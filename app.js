@@ -15,3 +15,5 @@ const app = express();
 app.get('/', resHandler);
 
 app.listen(3000);
+
+// in order to run this app, node --experimental-modules app.js
