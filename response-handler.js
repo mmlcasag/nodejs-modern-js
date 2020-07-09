@@ -7,7 +7,7 @@
 // this is the new syntax
 // you can use core api with promises now
 // in the case of the fs package in the new syntax, you have to call it like this
-import fs from 'fs/promises';
+import fs from 'fs';
 import path, { dirname } from 'path'; // you can import multiple functions inline by using ","
 import { fileURLToPath } from 'url';
 
@@ -22,7 +22,7 @@ export const resHandler = (req, res, next) => {
     // using callbacks
     // you can switch to this approach
     // using promises
-    fs.readFile('my-page.html', 'utf8')
+    fs.promises.readFile('my-page.html', 'utf8')
         .then((data) => {
           res.send(data);
         })
